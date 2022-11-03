@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize')
+const modelDepartamento = require('../models/Departamento.js')
 
 const sequelize = new Sequelize('category', 'postgres', 'root', {
     host: 'localhost',
@@ -6,4 +7,9 @@ const sequelize = new Sequelize('category', 'postgres', 'root', {
     logging: false
 })
 
-module.exports = sequelize
+modelDepartamento(sequelize)
+
+module.exports = {
+    ...sequelize.models,
+    sequelize
+}
