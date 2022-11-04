@@ -24,8 +24,15 @@ const Interface = props => {
             ...input,
             [e.target.name]: e.target.value
         })
-        
+        props.getClases(e.target.value)    
     }
+
+    // const setClases = async e => {
+    //     handleChangeDpto(e)
+    //     props.getClases(e.target.value)
+    // }
+
+
 
     // if(input.departamento !== 0) {
     //     console.log(input)
@@ -39,13 +46,13 @@ const Interface = props => {
         <div>
             <h1>Interface</h1>
             <form>
-                <select name='departamento' onChange={handleChangeDpto}>
-                    <option>--Departamento--</option>
+                <select name='departamento' onChange={handleChangeDpto} defaultValue='default'>
+                    <option disabled value="default">--Departamento--</option>
                     {departamentos ? departamentos.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
                 </select>
                 < br />
-                <select>
-                    <option>--Clase--</option>
+                <select  defaultValue='default'>
+                    <option disabled value="default">--Clase--</option>
                     {clases ? clases.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
                 </select>
             </form>

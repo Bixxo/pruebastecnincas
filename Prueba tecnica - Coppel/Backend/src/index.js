@@ -6,6 +6,9 @@ const { sequelize } = require('./database/database')
 const routes = require('./routes/index.js')
 const createDepartamentos = require('./CreateInputs/createDepartamenots.js')
 const createClases = require('./CreateInputs/createClases.js')
+// const createFamilias = require('./CreateInputs/createFamilias.js')
+// const createFamilias = require('./CreateInputs/')
+
 
 
 const port = 3001
@@ -24,3 +27,4 @@ sequelize.sync( { force: true } ).then(() => {
 })
 .then(() => createDepartamentos())
 .then(() => createClases())
+// .then(() => createFamilias())
