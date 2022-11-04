@@ -6,8 +6,9 @@ const { sequelize } = require('./database/database')
 const routes = require('./routes/index.js')
 const createDepartamentos = require('./CreateInputs/createDepartamenots.js')
 const createClases = require('./CreateInputs/createClases.js')
-// const createFamilias = require('./CreateInputs/createFamilias.js')
-// const createFamilias = require('./CreateInputs/')
+const createFamilias = require('./CreateInputs/createFamilias.js')
+const { Articulo } = require('./database/database.js')
+
 
 
 
@@ -27,4 +28,17 @@ sequelize.sync( { force: true } ).then(() => {
 })
 .then(() => createDepartamentos())
 .then(() => createClases())
-// .then(() => createFamilias())
+.then(() => createFamilias())
+.then(() => {
+    Articulo.create({
+        sku: 1,
+        name: 'NA',
+        marca: 'NA',
+        modelo: 'NA',
+        departamento: 1,
+        clase: 1,
+        familia: 1,
+        stock: 1,
+        cantidad: 1 
+    })
+})

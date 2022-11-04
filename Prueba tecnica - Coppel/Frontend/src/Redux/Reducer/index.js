@@ -1,6 +1,9 @@
 const initialState = {
     departamentos: [],
-    clases: []
+    clases: [],
+    familias: [],
+    articulo: {},
+    status: {}
 }
 
 function rootReducer (state = initialState, action) {
@@ -16,6 +19,30 @@ function rootReducer (state = initialState, action) {
             return {
                 ...state,
                 clases: action.payload
+            }
+
+        case 'GET_FAMILIA':
+            return {
+                ...state,
+                familias: action.payload
+            }
+
+        case 'GET_ARTICULO':
+            return {
+                ...state,
+                articulo: action.payload
+            }
+
+        case 'CREATE_ARTICULO':
+            return {
+                ...state,
+                status: action.payload
+            }
+
+        case 'CLEAR_STATUS':
+            return {
+                ...state,
+                status: {}
             }
 
         default:

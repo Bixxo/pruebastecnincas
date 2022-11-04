@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize')
-const Departamento = require('./Departamento')
 
 module.exports = (sequelize) => {
     sequelize.define('Clases', {
