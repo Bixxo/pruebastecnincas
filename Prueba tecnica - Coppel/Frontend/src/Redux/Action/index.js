@@ -47,3 +47,13 @@ export const clearStatus = () => {
         type: 'CLEAR_STATUS'
     }
 }
+
+export const  deleteArticulo = sku => {
+    return function (dispatch) {
+        return fetch(`http://localhost:3001/created/${sku}`, {
+        method: "DELETE",
+        })
+        .then(res => res.json())
+        .then(data => dispatch( {type: 'DELETE_ARTICULO', payload: data} ))
+    }
+}

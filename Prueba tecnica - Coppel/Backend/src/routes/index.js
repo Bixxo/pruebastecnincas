@@ -35,8 +35,25 @@ router.get('/created/:sku', async ( req, res ) => {
     }
 })
 
+router.delete('/created/:sku', async ( req, res ) => {
+
+    const { sku } = req.params
+
+    try {
+        await Articulo.destroy({
+            where: {
+                sku
+            }
+        })
+        res.json({ msg: 'Articulo borrado exitosamente' })
+    } 
+    catch (error) {
+        res.status(404).json({msg: 'Producto no encontrado'})
+    }
+})
+
 router.post('/create', async ( req, res ) => {
-    const { sku, name, marca,  modelo, departamento, clase, familia, stock, cantidad } = req.body
+    const { sku, name, marca,  modelo, departamento, clase, familia, stock, cantidad, fechaDeBaja } = req.body
     // Number.parseInt(id)
     // Number.parseInt(departamento)
     // Number.parseInt(clase)
@@ -54,7 +71,8 @@ router.post('/create', async ( req, res ) => {
             clase,
             familia,
             stock,
-            cantidad
+            cantidad,
+            fechaDeBaja,
         })
         res.status(201).json({ msg: 'Articulo creado exitosamente' })
     } 

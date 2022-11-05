@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
-import { getDepartamentos, getClases, getFamilias, getArticulo, createArticulo, clearStatus } from "../Redux/Action"
+import { getDepartamentos, getClases, getFamilias, getArticulo, createArticulo, clearStatus } from "../../Redux/Action"
 import validate from "./Errors"
 
 
 
-const Interface = props => {
+const AgregarProducto = props => {
 
     const [ input, setInput ] = useState({
         sku: 0,
@@ -17,7 +17,8 @@ const Interface = props => {
         clase: 0,
         familia: 0,
         stock: 0,
-        cantidad: 0
+        cantidad: 0,
+        fechaDeBaja: '1900-01-01'
     })
 
     const [ errors, setErrors ] = useState({})
@@ -79,7 +80,8 @@ const Interface = props => {
         clase: 0,
         familia: 0,
         stock: 0,
-        cantidad: 0
+        cantidad: 0,
+        fechaDeBaja: '1900-01-01'
     })
    }
 
@@ -103,11 +105,10 @@ const Interface = props => {
    if(Object.entries(status).length >= 1) {
     status.msg ? swal(status.msg) : swal('No se pudo crear el articulo')
    }
-   
   
     return (
         <div>
-            <h1>Interface</h1>
+            <h1>Alta de Articulo</h1>
             <form onSubmit={handleSubmit}>
                 <label>SKU: </label>
                 <input type='number' name='sku' onChange={handleChangeInput}/>
@@ -153,6 +154,11 @@ const Interface = props => {
                 <input type='text' name='cantidad' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.cantidad}/>
                 <label className='error'> {errors.cantidad}</label>
                 <br />
+                <label>Fecha de alta: </label>
+                <input type='date' disabled/>
+                <label>Fecha de baja: </label>
+                <input type='date' disabled value={input.fechaDeBaja} name='fechaDeBaja'/>
+                <br />
                 <button disabled={articulo !== null ? true : false || Object.entries(errors).length !== 0 ? true : false} type='submit'>Submit</button>
             </form>
             <button onClick={handleSearch}>Search</button>
@@ -170,4 +176,4 @@ export const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getDepartamentos, getClases, getFamilias, getArticulo, createArticulo, clearStatus })(Interface)
+export default connect(mapStateToProps, { getDepartamentos, getClases, getFamilias, getArticulo, createArticulo, clearStatus })(AgregarProducto)
