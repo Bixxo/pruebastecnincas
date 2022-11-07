@@ -1,0 +1,58 @@
+.inputSku {
+    width: 300px;
+    margin-left: 73px;
+}
+
+.label {
+    margin-left: 10px;
+}
+
+.inputArticulo {
+    width: 300px;
+    margin-left: 48px;
+}
+
+.inputMarca {
+    width: 300px;
+    margin-left: 59px;
+}
+
+.inputModelo {
+    width: 300px;
+    margin-left: 50px;
+}
+
+.inputDepartamento {
+    width: 308px;
+}
+
+.inputClase {
+    width: 308px;
+    margin-left: 64px;
+}
+
+.inputFamilia {
+    width: 308px;
+    margin-left: 54px;
+}
+
+.btnHome { 
+    font-size: 20px;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+        
+}
+    
+
+.btnHome:hover {
+    font-size: 25px;
+}

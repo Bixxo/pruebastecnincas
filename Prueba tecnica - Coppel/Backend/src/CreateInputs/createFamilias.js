@@ -1,5 +1,7 @@
 const { Familias } = require('../database/database')
 
+//Creamos los datos necesarios poder trabajar con la base de datos.
+
 createFamilias = async function(){
     await Familias.create({
         name: 'LICUADORAS',

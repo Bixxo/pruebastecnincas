@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
+import { Link } from "react-router-dom"
 import { getDepartamentos, getClases, getFamilias, getArticulo, createArticulo, clearStatus } from "../../Redux/Action"
 import validate from "./Errors"
+import './AgregarProductos.css'
 
 
 
 const AgregarProducto = props => {
 
     const [ input, setInput ] = useState({
-        sku: 0,
+        sku: '',
         name: '',
         marca: '',
         modelo: '',
@@ -108,60 +110,63 @@ const AgregarProducto = props => {
   
     return (
         <div>
-            <h1>Alta de Articulo</h1>
+            <h1 className="title">Alta de Articulo</h1>
             <form onSubmit={handleSubmit}>
-                <label>SKU: </label>
-                <input type='number' name='sku' onChange={handleChangeInput}/>
-                <label className='error'> {errors.sku}</label>
-                <br />
-                <label>Articulo: </label>
-                <input type='text' name='name' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.name}/>
-                <label className='error'> {errors.name}</label>
-                <br />
-                <label>Marca: </label>
-                <input type='text' name='marca' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.marca}/>
-                <label className='error'> {errors.marca}</label>
-                <br />
-                <label>Modelo: </label>
-                <input name='modelo' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.modelo}/>
-                <label className='error'> {errors.modelo}</label>
-                <br />
-                <label>Departamento: </label>
-                <select name='departamento' onChange={handleChangeDpto} defaultValue='default' disabled={articulo !== null ? true : false}>
-                    <option disabled value="default">--Departamento--</option>
-                    {departamentos ? departamentos.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
-                </select>
-                <label className='error'> {errors.departamento}</label>
-                < br />
-                <label>Clase: </label>
-                <select name='clase' defaultValue='default' onChange={handleChangeClase} disabled={articulo !== null ? true : false}>
-                    <option disabled value="default">--Clase--</option>
-                    {clases ? clases.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
-                </select>
-                <label className='error'> {errors.clase}</label>
-                <br />
-                <label>Familia: </label>
-                <select name='familia' defaultValue='default' onChange={handleChangeInput} disabled={articulo !== null ? true : false}>
-                    <option disabled value="default">--Familia--</option>
-                    {familias ? familias.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
-                </select>
-                <label className='error'> {errors.familia}</label>
-                <br />
-                <label>Stock: </label>
-                <input type='text' name='stock' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.stock}/>
-                <label className='error'> {errors.stock}</label>
-                <label>Cantidad: </label>
-                <input type='text' name='cantidad' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.cantidad}/>
-                <label className='error'> {errors.cantidad}</label>
-                <br />
-                <label>Fecha de alta: </label>
-                <input type='date' disabled/>
-                <label>Fecha de baja: </label>
-                <input type='date' disabled value={input.fechaDeBaja} name='fechaDeBaja'/>
-                <br />
-                <button disabled={articulo !== null ? true : false || Object.entries(errors).length !== 0 ? true : false} type='submit'>Submit</button>
+                <div>
+                    <label className="label">SKU: </label>
+                    <input className="inputSku" type='number' name='sku' onChange={handleChangeInput}/>
+                    <label className='error'> {errors.sku}</label>
+                    <br />
+                    <label className="label">Articulo: </label>
+                    <input className="inputArticulo" type='text' name='name' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.name}/>
+                    <label className='error'> {errors.name}</label>
+                    <br />
+                    <label className="label">Marca: </label>
+                    <input className="inputMarca" type='text' name='marca' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.marca}/>
+                    <label className='error'> {errors.marca}</label>
+                    <br />
+                    <label className="label">Modelo: </label>
+                    <input className="inputModelo" name='modelo' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.modelo}/>
+                    <label className='error'> {errors.modelo}</label>
+                    <br />
+                    <label className="label">Departamento: </label>
+                    <select className="inputDepartamento" value={input.departamento} name='departamento' onChange={handleChangeDpto} disabled={articulo !== null ? true : false}>
+                        <option disabled value="0">--Departamento--</option>
+                        {departamentos ? departamentos.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
+                    </select>
+                    <label className='error'> {errors.departamento}</label>
+                    < br />
+                    <label className="label">Clase: </label>
+                    <select className="inputClase" name='clase' value={input.clase} onChange={handleChangeClase} disabled={articulo !== null ? true : false}>
+                        <option disabled value="0">--Clase--</option>
+                        {clases ? clases.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
+                    </select>
+                    <label className='error'> {errors.clase}</label>
+                    <br />
+                    <label className="label">Familia: </label>
+                    <select className="inputFamilia" name='familia' value={input.familia} onChange={handleChangeInput} disabled={articulo !== null ? true : false}>
+                        <option disabled value="0">--Familia--</option>
+                        {familias ? familias.map(el => <option key={el.id} value={el.id}>{el.name}</option>) : null}
+                    </select>
+                    <label className='error'> {errors.familia}</label>
+                    <br />
+                    <label className="label">Stock: </label>
+                    <input type='text' name='stock' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.stock}/>
+                    <label className='error'> {errors.stock}</label>
+                    <label className="label">Cantidad: </label>
+                    <input type='text' name='cantidad' onChange={handleChangeInput} disabled={articulo !== null ? true : false} value={input.cantidad}/>
+                    <label className='error'> {errors.cantidad}</label>
+                    <br />
+                    <label className="label">Fecha de alta: </label>
+                    <input type='date' disabled/>
+                    <label className="label">Fecha de baja: </label>
+                    <input type='date' disabled value={input.fechaDeBaja} name='fechaDeBaja'/>
+                    <br />
+                    <button disabled={articulo !== null ? true : false || Object.entries(errors).length !== 0 ? true : false} type='submit'>Crear</button>
+                </div>
             </form>
-            <button onClick={handleSearch}>Search</button>
+            <button onClick={handleSearch} disabled={!input.sku}>Search</button>
+            <Link to='/'><button className="btnHome">Home</button></Link>
         </div>
     )
 }

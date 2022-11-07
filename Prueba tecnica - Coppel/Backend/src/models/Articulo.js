@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 
+//Creamos el modelo para crear articulos
+
 module.exports = (sequelize) => {
     sequelize.define('Articulo', {
         id: {
@@ -67,60 +69,6 @@ module.exports = (sequelize) => {
                 
             },
             unique: true
-        },
-        departamento: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isInt: {
-                    args: true,
-                    msg: 'Tiene que ser un numero'
-                },
-                min: {
-                    args: 1,
-                    msg: 'No puede ser un numero negativo'
-                },
-                len: {
-                    args: [1,1],
-                    msg: 'Solo puede tener un digito'
-                }
-            }
-        },
-        clase: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isInt: {
-                    args: true,
-                    msg: 'Tiene que ser un numero'
-                },
-                min: {
-                    args: 1,
-                    msg: 'No puede ser un numero negativo'
-                },
-                len: {
-                    args: [1,2],
-                    msg: 'Solo puede tener maximo 2 digitos'
-                }
-            }
-        },
-        familia: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isInt: {
-                    args: true,
-                    msg: 'Tiene que ser un numero'
-                },
-                min: {
-                    args: 1,
-                    msg: 'No puede ser un numero negativo'
-                },
-                len: {
-                    args: [1,3],
-                    msg: 'Solo puede tener maximo 3 digitos'
-                }
-            }
         },
         fechaDeAlta: {
             type: DataTypes.DATEONLY,

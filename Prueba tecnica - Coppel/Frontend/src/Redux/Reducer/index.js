@@ -51,6 +51,45 @@ function rootReducer (state = initialState, action) {
                 status: action.payload
             }
 
+        case 'UPDATE_ARTICULO':
+            return {
+                ...state,
+                status: action.payload
+            }
+        case 'CLEAR_ARTICULO':
+            return {
+                ...state,
+                articulo: {}
+            }
+
+        case 'CLREAR_STATE':
+            return {
+                ... state,
+                departamentos: [],
+                clases: [],
+                familias: [],
+                articulo: {},
+                status: {}
+            }
+
+        case 'CREATE_DEPARTAMENTO':
+            return {
+                ...state,
+                status: action.payload
+            }
+
+        case 'CREATE_CLASE':
+            return {
+                ...state,
+                status: action.payload
+            }
+
+        case 'CREATE_FAMILIA':
+            return {
+                ...state,
+                status: action.payload
+            } 
+
         default:
             return state
     }

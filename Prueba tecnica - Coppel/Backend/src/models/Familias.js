@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 
+//Creamos el modelo para crear familais
+
 module.exports = (sequelize) => {
     sequelize.define('Familias', {
         id: {

@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 
+//Creamos el modelo para crear departamenotos
+
 module.exports = (sequelize) => {
     sequelize.define('Departamento', {
         id: {
@@ -10,7 +12,13 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true,
+            validate: {
+                isUppercase: {
+                    args: true,
+                    msg: 'Tiene que ser letras mayusuclas'
+                }   
+            }
         }
     },
     {

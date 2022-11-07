@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { connect } from "react-redux"
 import swal from "sweetalert"
+import { Link } from "react-router-dom"
 import { getArticulo, deleteArticulo } from "../../Redux/Action"
 import validate from "./Errors"
 
@@ -40,7 +41,7 @@ const Delete = params => {
     })
    }
 
-   const handleDelete = input => {
+   const handleDelete = () => {
     swal({
         title: `Estas seguro que deseas eliminar el articulo: ${articulo.sku} - ${articulo.name}`,
         text: "Una vez confirmado se borrará de la base  de datos",
@@ -64,13 +65,14 @@ const Delete = params => {
 
     return (
         <div>
-            <h1>Delete {!articulo ? '- Producto no encontrado' : null}</h1>
+            <h1 className="title">Delete {!articulo ? '- Producto no encontrado' : null}</h1>
             <label>SKU: </label>
             <input type='number' name='sku' onChange={handleChange} value={input.sku}/>
             <label className='error'> {errors.sku}</label>
             <br />
             <button onClick={handleSearch} disabled={Object.entries(errors).length !== 0 ? true : false}>Search</button>
-            <button disabled={!articulo} onClick={handleDelete}>Delete</button>
+            <button disabled={!articulo} onClick={handleDelete}>Borrar Articulo</button>
+            <Link to='/'><button className="btnHome">Home</button></Link>
         </div>
     )
 }

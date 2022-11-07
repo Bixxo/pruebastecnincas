@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 
+//Creamos el modelo para crear clases
+
 module.exports = (sequelize) => {
     sequelize.define('Clases', {
         id: {

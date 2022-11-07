@@ -1,5 +1,8 @@
 const { Clases } = require('../database/database.js')
 
+
+//Creamos los datos necesarios poder trabajar con la base de datos.
+
 createClases = async function(){
     await Clases.create({
         name: 'COMESTIBLES',

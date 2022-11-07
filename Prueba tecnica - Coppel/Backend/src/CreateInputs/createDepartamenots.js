@@ -1,5 +1,7 @@
 const { Departamento } = require('../database/database.js')
 
+//Creamos los datos necesarios poder trabajar con la base de datos.
+
 createDepartamentos = async function(){
     await Departamento.create({
         name: 'DOMESTICOS'

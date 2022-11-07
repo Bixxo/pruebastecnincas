@@ -15,17 +15,18 @@ const { Articulo } = require('./database/database.js')
 const port = 3001
 
 
-//middelwares
+//middelwares necesarios
 server.use(express.json())
 server.use(cors())
 server.use(morgan('dev'))
 server.use('/', routes);
 
-
+//Inizialisamos el servidor y nos enlazamos con la base de datos
 sequelize.sync( { force: true } ).then(() => {
     server.listen(port, () => console.log(`server start on port: ${port}`))
     
 })
+//Creamos los archivos necesarios para empezar a trabajar con la base de datos
 .then(() => createDepartamentos())
 .then(() => createClases())
 .then(() => createFamilias())
