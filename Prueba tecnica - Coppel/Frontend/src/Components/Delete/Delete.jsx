@@ -30,9 +30,16 @@ const Delete = params => {
         }))
     }
 
-    const handleSearch = e => {
+    const handleSearch = async e => {
         e.preventDefault()
-        getArticulo(input.sku)
+        await getArticulo(input.sku).then(res => {
+            if (!res.payload) {
+                swal({
+                    icon: 'error',
+                    text: 'No se encontro un articulo con ese SKU'
+                })
+            }
+        })
    }
 
    const reset = () => {
@@ -65,7 +72,7 @@ const Delete = params => {
 
     return (
         <div>
-            <h1 className="title">Delete {!articulo ? '- Producto no encontrado' : null}</h1>
+            <h1 className="title">Delete</h1>
             <label>SKU: </label>
             <input type='number' name='sku' onChange={handleChange} value={input.sku}/>
             <label className='error'> {errors.sku}</label>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { connect } from 'react-redux'
 import swal from 'sweetalert'
 import { Link } from "react-router-dom"
@@ -26,11 +26,6 @@ const AgregarProducto = props => {
     const [ errors, setErrors ] = useState({})
 
     const { departamentos, clases, getDepartamentos, getClases, getFamilias, familias, getArticulo, articulo,createArticulo, clearStatus, status } = props
-
-    useEffect(() => {
-        getDepartamentos()
-        getArticulo(1)
-    },[])
 
     const handleChangeInput = e => {
         setInput({
@@ -67,9 +62,19 @@ const AgregarProducto = props => {
         getFamilias(e.target.value)
     }
 
-   const handleSearch = e => {
+   const handleSearch = async e => {
         e.preventDefault()
-        getArticulo(input.sku)
+        await getArticulo(input.sku).then(res => {
+            if (!res.payload) {
+                getDepartamentos()
+            }
+            else {
+                swal({
+                    icon: 'error',
+                    text: 'Ya existe un articulo con ese SKU'
+                })
+            }
+        })
    }
 
    const reset = () => {

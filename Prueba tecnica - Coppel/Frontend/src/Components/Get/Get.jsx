@@ -70,7 +70,14 @@ const Get = props => {
     
     const handleSearch = e => {
         e.preventDefault()
-        getArticulo(input.sku) 
+        getArticulo(input.sku).then(res => {
+            if (!res.payload) {
+                swal({
+                    icon: 'error',
+                    text: 'No se encontro un articulo con ese SKU'
+                })
+            }
+        }) 
         reset() 
     }
 
@@ -93,12 +100,6 @@ const Get = props => {
             fechaDeAlta: articulo.fechaDeAlta
         })
     }
-
-    if(articulo === null) {
-        swal('Producto no encontrado')
-        clearArticulo()
-    }
-
 
     return (
         <div>

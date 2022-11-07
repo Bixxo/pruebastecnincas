@@ -15,7 +15,7 @@ const validate = input => {
     else if (input.name.length < 2 ) {
         errors.name = 'Tiene que contar con al menos 2 caracteres'
     }
-    else if ( !/^[A-Z]*$/.test(input.name) ) {
+    else if ( !/^[A-Z 0-9]*$/.test(input.name) ) {
         errors.name = 'Tiene que ser solo letras mayusculas'
     }
     else if(input.name > 15) {

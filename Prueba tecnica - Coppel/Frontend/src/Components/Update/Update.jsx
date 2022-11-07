@@ -64,7 +64,6 @@ const Update = props => {
             ...input,
             [e.target.name]: e.target.value
         }))
-        console.log(e.target.value)
         getFamilias(e.target.value)
     }
 
@@ -105,9 +104,16 @@ const Update = props => {
         })
     }
 
-   const handleSearch = e => {
+   const handleSearch = async e => {
         e.preventDefault()
-        getArticulo(input.sku)
+        await getArticulo(input.sku).then(res => {
+            if (!res.payload) {
+                swal({
+                    icon: 'error',
+                    text: 'No se encontro un articulo con ese SKU'
+                })
+            }
+        })
    }
 
    const handleSubmit = (e) => {
@@ -137,7 +143,7 @@ const Update = props => {
 
     return (
         <div>
-            <h1 className="title">Updating {!articulo ? '- Producto no encontrado' : null}</h1>
+            <h1 className="title">Updating</h1>
             <form onSubmit={handleSubmit}>
                 <label className="label">SKU: </label>
                 <input className="inputSku" value={input.sku} type='number' name='sku' onChange={handleChangeInput}/>

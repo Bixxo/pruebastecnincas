@@ -174,7 +174,7 @@ router.put('/update/:sku', async ( req, res ) => {
     const { sku } = req.params
     const { name, marca, modelo, departamento, clase, familia, stock, cantidad, descontinuado } = req.body
 
-    if (!name || !marca || !modelo || !departamento || !clase || !familia || !stock || !cantidad || sku === '1') {
+    if (!name || !marca || !modelo || !departamento || !clase || !familia || !stock || !cantidad) {
         return res.status(400).json({msg: 'No se pudo modificar porque faltan valores requeridos'})
     }  
     try {

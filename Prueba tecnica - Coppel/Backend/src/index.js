@@ -30,16 +30,16 @@ sequelize.sync( { force: true } ).then(() => {
 .then(() => createDepartamentos())
 .then(() => createClases())
 .then(() => createFamilias())
-.then(() => {
-    Articulo.create({
-        sku: 1,
-        name: 'NA',
-        marca: 'NA',
-        modelo: 'NA',
-        departamento: 1,
-        clase: 1,
-        familia: 1,
-        stock: 1,
-        cantidad: 1 
-    })
-})
+// .then(() => {
+//     Articulo.create({
+//         sku: 1,
+//         name: 'NA',
+//         marca: 'NA',
+//         modelo: 'NA',
+//         departamento: 1,
+//         clase: 1,
+//         familia: 1,
+//         stock: 1,
+//         cantidad: 1 
+//     })
+// })
